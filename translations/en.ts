@@ -12,7 +12,7 @@ const en = {
     titleBefore: "A healthier smile starts",
     titleHighlight: "here.",
     description:
-      "Welcome to Oracle Dental Care — a modern, welcoming dental clinic focused on comfortable care, clear communication and healthy smiles for every generation.",
+      "Welcome to Oral-H Dental Care — a modern, welcoming dental clinic focused on comfortable care, clear communication and healthy smiles for every generation.",
     bookAppointment: "Book an Appointment",
     exploreServices: "Explore Services",
     weekdays: "Mon–Fri",
@@ -77,10 +77,10 @@ const en = {
   },
 
   about: {
-    eyebrow: "About Oracle Dental Care",
+    eyebrow: "About Oral-H Dental Care",
     title: "Personal care. Modern dentistry.",
     description1:
-      "Oracle Dental Care is Biratnagar’s Premier Modern Dental Clinic. Our concept combines evidence-based dentistry with a warm, patient-first experience.",
+      "Oral-H Dental Care is Biratnagar’s Premier Modern Dental Clinic. Our concept combines evidence-based dentistry with a warm, patient-first experience.",
     description2:
       "We explain your options in simple language, take time to answer questions and create treatment plans that fit your needs.",
 
@@ -88,7 +88,7 @@ const en = {
       "We want every patient to leave feeling listened to, cared for and confident about their smile.",
     quoteAuthor: "Dr. Anna Müller · Medical Director",
 
-    badgeTitle: "Oracle",
+    badgeTitle: "Oral-H",
     badgeSubtitle: "Dental Center",
 
     benefits: [
@@ -117,7 +117,7 @@ const en = {
 
   contact: {
     eyebrow: "Find us",
-    title: "Visit Oracle Dental Care.",
+    title: "Visit Oral-H Dental Care.",
     address: "Address",
     phone: "Phone",
     openingHours: "Opening hours",
@@ -129,7 +129,7 @@ const en = {
 
   footer: {
     beta: "Beta Version",
-    copyright: "© 2026 Oracle Dental Care",
+    copyright: "© 2026 Oral-H Dental Care",
     privacy: "Privacy",
     impressum: "Impressum",
   },

@@ -92,7 +92,7 @@ export default function Home() {
             <span className="logo-mark">✦</span>
 
             <span className="logo-text">
-              ORACLE
+              Oral-H
               <small>DENTAL CARE</small>
             </span>
           </Link>
