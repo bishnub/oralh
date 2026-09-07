@@ -548,7 +548,7 @@ a {
 .team-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 10px;
   margin-top: 42px;
 }
 
@@ -1605,16 +1605,25 @@ a {
 }
 
 .language-switcher {
-  border: 1px solid #d8d0df;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 30px;
+  padding: 0;
+  border: 0;
   background: transparent;
-  color: inherit;
-  padding: 8px 12px;
-  border-radius: 999px;
   cursor: pointer;
-  font: inherit;
-  font-size: 14px;
 }
 
-.language-switcher:hover {
-  background: rgba(124, 58, 237, 0.06);
+.language-switcher img {
+  display: block;
+  width: 26px;
+  height: 22px;
+  object-fit: contain;
 }
+
+.language-switcher:hover img {
+  transform: scale(1.1);
+}
+

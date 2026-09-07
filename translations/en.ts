@@ -17,8 +17,8 @@ const en = {
     exploreServices: "Explore Services",
     weekdays: "Mon–Fri",
     hours: "08:00–18:00",
-    location: "Biratnagar",
-    transport: "Easy public transport access",
+    location: "Biratnagar 7, Dharan Road, Nepal",
+    transport: "Opposite to Bhaatbhateni",
     floatingTitle: "Care you can feel good about.",
     floatingDescription:
       "Friendly professionals, modern technology and a calm environment designed around you.",

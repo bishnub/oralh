@@ -55,8 +55,9 @@ export async function GET() {
   try {
     const resourceQuery =
       `bb_resources` +
-      `?$select=bb_resourceid,bb_name,bb_speciality,bb_image` +
-      `&$filter=statecode eq 0 and bb_type eq 1`;
+      `?$select=bb_resourceid,bb_name,bb_speciality,bb_order,bb_image` +
+      `&$filter=statecode eq 0 and bb_type eq 1` +
+      `&$orderby=bb_order asc`;
 
     const data = await dataverseGet(resourceQuery);
 
@@ -64,6 +65,7 @@ export async function GET() {
       id: resource.bb_resourceid,
       name: resource.bb_name,
       speciality: resource.bb_speciality,
+      order: resource.bb_order,
       image: resource.bb_image
         ? `data:image/jpeg;base64,${resource.bb_image}`
         : null,

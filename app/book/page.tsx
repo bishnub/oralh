@@ -1407,8 +1407,8 @@ useEffect(() => {
 
                 <div className="clinic-summary">
                   <strong>
-                    SmileCare Dental
-                    Center
+                    Oral-H Dental
+                    Care
                   </strong>
 
                   <span>
@@ -1418,7 +1418,7 @@ useEffect(() => {
                   </span>
 
                   <span>
-                    Hamburg, Germany
+                    Biratnagar 7, 56613 Dharan Road, Nepal
                   </span>
 
                   <span>
@@ -1426,7 +1426,7 @@ useEffect(() => {
                   </span>
 
                   <span>
-                    +49 40 12345678
+                    +977 9807302924
                   </span>
                 </div>
               </div>

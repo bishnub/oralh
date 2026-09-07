@@ -23,6 +23,7 @@ type Resource = {
   id: string;
   name: string;
   speciality: string;
+  order:number;
   image: string | null;
 };
 
@@ -89,7 +90,7 @@ export default function Home() {
       <header className="nav">
         <div className="container nav-inner">
           <Link href="/" className="logo">
-            <span className="logo-mark">✦</span>
+            <span className="logo-mark">🦷</span>
 
             <span className="logo-text">
               Oral-H
@@ -97,24 +98,42 @@ export default function Home() {
             </span>
           </Link>
 
+        <div className="nav-inner">
+          <Link href="/" className="logo">
+            ...
+          </Link>
+
           <nav className="nav-links">
             <Link href="#about">{t.nav.about}</Link>
             <Link href="#services">{t.nav.services}</Link>
             <Link href="#team">{t.nav.team}</Link>
             <Link href="#contact">{t.nav.contact}</Link>
-
-            <button
-              type="button"
-              className="language-switcher"
-              onClick={() =>
-                setLanguage((current) =>
-                  current === "en" ? "ne" : "en"
-                )
-              }
-            >
-              {language === "en" ? "नेपाली" : "English"}
-            </button>
           </nav>
+          <button
+            type="button"
+            className="language-switcher"
+            onClick={() =>
+              setLanguage((current) =>
+                current === "en" ? "ne" : "en"
+              )
+            }
+            aria-label={
+              language === "en"
+                ? "Switch to Nepali"
+                : "Switch to English"
+            }
+            title={
+              language === "en"
+                ? "Switch to Nepali"
+                : "Switch to English"
+            }
+          >
+            <img
+              src={language === "en" ? "/flags/np.svg" : "/flags/gb.svg"}
+              alt={language === "en" ? "Nepali" : "English"}
+            />
+          </button>
+        </div>
 
           <Link href="/book" className="btn btn-primary">
             <CalendarDays size={17} />
@@ -359,9 +378,9 @@ export default function Home() {
                     key={person.id}
                   >
                     <div className="person-photo">
-                      {person.image ? (
+                      {person.order ? (
                         <img
-                          src={person.image}
+                          src={`/team/${person.order}.jpg`}
                           alt={person.name}
                         />
                       ) : (
