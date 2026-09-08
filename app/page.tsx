@@ -90,11 +90,12 @@ export default function Home() {
       <header className="nav">
         <div className="container nav-inner">
           <Link href="/" className="logo">
-            <span className="logo-mark">🦷</span>
-
+            <span>
+              <img src="/favicon.svg" alt="Oral-H Logo" width="36" height="36" />
+            </span>
             <span className="logo-text">
               Oral-H
-              <small>DENTAL CARE</small>
+              <small>Dental Care</small>
             </span>
           </Link>
 
@@ -135,7 +136,7 @@ export default function Home() {
           </button>
         </div>
 
-          <Link href="/book" className="btn btn-primary">
+          <Link href={`/book?lang=${language}`} className="btn btn-primary">
             <CalendarDays size={17} />
             {t.nav.bookAppointment}
           </Link>
@@ -161,7 +162,7 @@ export default function Home() {
               </p>
 
               <div className="hero-actions">
-                <Link href="/book" className="btn btn-primary">
+                <Link href={`/book?lang=${language}`} className="btn btn-primary">
                   {t.hero.bookAppointment}
                   <ArrowRight size={17} />
                 </Link>
@@ -280,7 +281,7 @@ export default function Home() {
                     </p>
 
                     <Link
-                      href="/book"
+                      href={`/book?lang=${language}`}
                       className="service-link"
                     >
                       {t.services.learnMore}
@@ -412,7 +413,7 @@ export default function Home() {
               </div>
 
               <Link
-                href="/book"
+                href={`/book?lang=${language}`}
                 className="btn btn-light"
               >
                 {t.cta.button}
@@ -495,7 +496,7 @@ export default function Home() {
                 </div>
 
                 <Link
-                  href="/book"
+                  href={`/book?lang=${language}`}
                   className="btn btn-primary"
                 >
                   {t.contact.bookVisit}

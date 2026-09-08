@@ -12,6 +12,10 @@ import {
   User,
 } from "lucide-react";
 
+import en from "@/translations/en";
+import ne from "@/translations/ne";
+import { useSearchParams } from "next/navigation";
+
 type Service = {
   id: string;
   name: string;
@@ -41,6 +45,15 @@ type BookingResult = {
 };
 
 export default function BookPage() {
+  const searchParams = useSearchParams();
+
+  const urlLanguage = searchParams.get("lang");
+
+  const [language, setLanguage] = useState<"en" | "ne">(
+    urlLanguage === "ne" ? "ne" : "en"
+  );
+
+  const t = language === "en" ? en : ne;
   /*
    * ---------------------------------------------------------
    * Booking state
@@ -412,10 +425,10 @@ useEffect(() => {
     price: number
   ): string {
     return new Intl.NumberFormat(
-      "de-DE",
+      "en-GB",
       {
         style: "currency",
-        currency: "EUR",
+        currency: "NPR",
       }
     ).format(price);
   }
@@ -600,7 +613,7 @@ useEffect(() => {
           }`}
         >
           <span>1</span>
-          <label>Service</label>
+          <label>{t.booking.steps.service}</label>
         </div>
 
         <div className="booking-step-line" />
@@ -613,7 +626,7 @@ useEffect(() => {
           }`}
         >
           <span>2</span>
-          <label>Date & Time</label>
+          <label>{t.booking.steps.dateTime}</label>
         </div>
 
         <div className="booking-step-line" />
@@ -626,7 +639,7 @@ useEffect(() => {
           }`}
         >
           <span>3</span>
-          <label>Your Details</label>
+          <label>{t.booking.steps.details}</label>
         </div>
 
         <div className="booking-step-line" />
@@ -639,7 +652,7 @@ useEffect(() => {
           }`}
         >
           <span>4</span>
-          <label>Confirmation</label>
+          <label>{t.booking.steps.confirmation}</label>
         </div>
       </div>
     );
@@ -655,28 +668,27 @@ useEffect(() => {
     <main className="booking-page">
       <section className="booking-hero">
         <div className="container">
+          <div className="booking-hero-top">
           <a
             href="/"
             className="booking-back-link"
           >
             <ArrowLeft size={16} />
-            Back to home
+            {t.booking.backToHome}
           </a>
+        </div>
 
           <div className="booking-hero-content">
             <span className="eyebrow">
-              ONLINE APPOINTMENT
+               {t.booking.onlineAppointment}
             </span>
 
             <h1>
-              Book your dental
-              appointment
+              {t.booking.title}
             </h1>
 
             <p>
-              Choose a service, select
-              an available time, and
-              provide your details.
+              {t.booking.subtitle}
             </p>
           </div>
         </div>
@@ -698,25 +710,18 @@ useEffect(() => {
                   <div className="booking-card-header">
                     <div>
                       <span className="eyebrow">
-                        STEP 1
+                        {t.booking.step1.label}
                       </span>
 
-                      <h2>
-                        Choose a service
-                      </h2>
+                      <h2>{t.booking.step1.title}</h2>
 
-                      <p>
-                        Select the dental
-                        service you would
-                        like to book.
-                      </p>
+                      <p>{t.booking.step1.description}</p>
                     </div>
                   </div>
 
                   {isLoadingServices && (
                     <div className="loading-message">
-                      Loading available
-                      services...
+                      {t.booking.step1.loading}
                     </div>
                   )}
 
@@ -735,9 +740,7 @@ useEffect(() => {
                     services.length ===
                       0 && (
                       <div className="loading-message">
-                        No dental services
-                        are currently
-                        available.
+                        {t.booking.step1.empty}
                       </div>
                     )}
 
@@ -813,7 +816,7 @@ useEffect(() => {
                         handleServiceContinue
                       }
                     >
-                      Continue
+                      {t.booking.step1.continue}
                       <ArrowRight
                         size={17}
                       />
@@ -831,17 +834,15 @@ useEffect(() => {
                   <div className="booking-card-header">
                     <div>
                       <span className="eyebrow">
-                        STEP 2
+                        {t.booking.step2.label}
                       </span>
 
                       <h2>
-                        Select date & time
+                        {t.booking.step2.title}
                       </h2>
 
                       <p>
-                        Choose from the
-                        currently available
-                        appointment slots.
+                        {t.booking.step2.description}
                       </p>
                     </div>
                   </div>
@@ -862,14 +863,13 @@ useEffect(() => {
                       />
 
                       <h3>
-                        Available dates
+                        {t.booking.step2.title}
                       </h3>
                     </div>
 
                     {isLoadingDates && (
                       <div className="loading-message">
-                        Checking available
-                        dates...
+                        {t.booking.step2.checkingDates}
                       </div>
                     )}
 
@@ -918,11 +918,7 @@ useEffect(() => {
                         0 &&
                       !availabilityError && (
                         <div className="loading-message">
-                          No appointments
-                          are available
-                          for this service
-                          in the next
-                          14 days.
+                          {t.booking.step2.noDates}
                         </div>
                       )}
                   </div>
@@ -935,14 +931,13 @@ useEffect(() => {
                         />
 
                         <h3>
-                          Available times
+                          {t.booking.step2.availableTimes}
                         </h3>
                       </div>
 
                       {isLoadingSlots && (
                         <div className="loading-message">
-                          Checking available
-                          times...
+                          {t.booking.step2.checkingTimes}
                         </div>
                       )}
 
@@ -975,9 +970,7 @@ useEffect(() => {
                         availableSlots.length ===
                           0 && (
                           <div className="loading-message">
-                            No available
-                            times for
-                            this date.
+                            {t.booking.step2.noTimes}
                           </div>
                         )}
                     </div>
@@ -994,7 +987,7 @@ useEffect(() => {
                       <ArrowLeft
                         size={17}
                       />
-                      Back
+                      {t.booking.step2.back}
                     </button>
 
                     <button
@@ -1008,7 +1001,7 @@ useEffect(() => {
                         handleDateContinue
                       }
                     >
-                      Continue
+                      {t.booking.step2.continue}
                       <ArrowRight
                         size={17}
                       />
@@ -1026,17 +1019,15 @@ useEffect(() => {
                   <div className="booking-card-header">
                     <div>
                       <span className="eyebrow">
-                        STEP 3
+                        {t.booking.step3.label}
                       </span>
 
                       <h2>
-                        Your details
+                        {t.booking.step3.title}
                       </h2>
 
                       <p>
-                        Please provide your
-                        contact information
-                        to complete the
+                        {t.booking.step3.description}
                         booking.
                       </p>
                     </div>
@@ -1050,7 +1041,7 @@ useEffect(() => {
                     <div className="form-grid">
                       <div className="form-group">
                         <label htmlFor="firstName">
-                          First name
+                          {t.booking.step3.firstName}
                         </label>
 
                         <div className="input-with-icon">
@@ -1077,7 +1068,7 @@ useEffect(() => {
 
                       <div className="form-group">
                         <label htmlFor="lastName">
-                          Last name
+                          {t.booking.step3.lastName}
                         </label>
 
                         <div className="input-with-icon">
@@ -1105,7 +1096,7 @@ useEffect(() => {
 
                     <div className="form-group">
                       <label htmlFor="email">
-                        Email address
+                        {t.booking.step3.email}
                       </label>
 
                       <div className="input-with-icon">
@@ -1130,7 +1121,7 @@ useEffect(() => {
 
                     <div className="form-group">
                       <label htmlFor="phone">
-                        Phone number
+                        {t.booking.step3.phone}
                       </label>
 
                       <div className="input-with-icon">
@@ -1176,7 +1167,7 @@ useEffect(() => {
                         <ArrowLeft
                           size={17}
                         />
-                        Back
+                        {t.booking.step3.back}
                       </button>
 
                       <button
@@ -1187,8 +1178,8 @@ useEffect(() => {
                         }
                       >
                         {isBooking
-                          ? "Booking..."
-                          : "Confirm appointment"}
+                          ? t.booking.step3.booking
+                          : t.booking.step3.confirm}
 
                         {!isBooking && (
                           <CheckCircle2
@@ -1215,12 +1206,11 @@ useEffect(() => {
                     </div>
 
                     <span className="eyebrow">
-                      APPOINTMENT CONFIRMED
+                      {t.booking.step4.label}
                     </span>
 
                     <h2>
-                      Your appointment is
-                      confirmed
+                      {t.booking.step4.title}
                     </h2>
 
                     <p>
@@ -1229,7 +1219,7 @@ useEffect(() => {
 
                     <div className="booking-reference">
                       <span>
-                        Booking reference
+                        {t.booking.step4.bookingReference}
                       </span>
 
                       <strong>
@@ -1242,7 +1232,7 @@ useEffect(() => {
                     <div className="confirmation-details">
                       <div>
                         <span>
-                          Service
+                          {t.booking.step4.service}
                         </span>
 
                         <strong>
@@ -1254,7 +1244,7 @@ useEffect(() => {
 
                       <div>
                         <span>
-                          Date
+                          {t.booking.step4.date}
                         </span>
 
                         <strong>
@@ -1270,7 +1260,7 @@ useEffect(() => {
 
                       <div>
                         <span>
-                          Time
+                          {t.booking.step4.time}
                         </span>
 
                         <strong>
@@ -1282,7 +1272,7 @@ useEffect(() => {
 
                       <div>
                         <span>
-                          Duration
+                          {t.booking.step4.duration}
                         </span>
 
                         <strong>
@@ -1295,15 +1285,11 @@ useEffect(() => {
 
                     <div className="confirmation-note">
                       <strong>
-                        Please save your
-                        booking reference.
+                        {t.booking.step4.saveReference}
                       </strong>
 
                       <p>
-                        If you need to contact
-                        the clinic about your
-                        appointment, please
-                        provide this reference.
+                        {t.booking.step4.referenceDescription}
                       </p>
                     </div>
 
@@ -1312,7 +1298,7 @@ useEffect(() => {
                         href="/"
                         className="primary-button"
                       >
-                        Back to home
+                        {t.booking.step4.backToHome}
                         <ArrowRight
                           size={17}
                         />
@@ -1329,18 +1315,18 @@ useEffect(() => {
             <aside className="booking-summary">
               <div className="summary-card">
                 <span className="eyebrow">
-                  YOUR APPOINTMENT
+                  {t.booking.summary.eyebrow}
                 </span>
 
                 <h3>
-                  Booking summary
+                  {t.booking.summary.title}
                 </h3>
 
                 <div className="summary-divider" />
 
                 <div className="summary-item">
                   <span>
-                    Service
+                    {t.booking.summary.service}
                   </span>
 
                   <strong>
@@ -1353,7 +1339,7 @@ useEffect(() => {
                 {selectedService && (
                   <div className="summary-item">
                     <span>
-                      Duration
+                      {t.booking.summary.duration}
                     </span>
 
                     <strong>
@@ -1366,7 +1352,7 @@ useEffect(() => {
 
                 <div className="summary-item">
                   <span>
-                    Date
+                    {t.booking.summary.date}
                   </span>
 
                   <strong>
@@ -1378,7 +1364,7 @@ useEffect(() => {
 
                 <div className="summary-item">
                   <span>
-                    Time
+                    {t.booking.summary.time}
                   </span>
 
                   <strong>
@@ -1393,7 +1379,7 @@ useEffect(() => {
 
                     <div className="summary-total">
                       <span>
-                        Estimated price
+                        {t.booking.summary.estimatedPrice}
                       </span>
 
                       <strong>
@@ -1407,26 +1393,23 @@ useEffect(() => {
 
                 <div className="clinic-summary">
                   <strong>
-                    Oral-H Dental
-                    Care
+                    {t.booking.summary.clinicName}
                   </strong>
 
                   <span>
-                    Modern dental care
-                    with a personal
-                    touch.
+                    {t.booking.summary.clinicDescription}
                   </span>
 
                   <span>
-                    Biratnagar 7, 56613 Dharan Road, Nepal
+                    {t.booking.summary.address}
                   </span>
 
                   <span>
-                    Mon–Fri · 08:00–18:00
+                    {t.booking.summary.hours}
                   </span>
 
                   <span>
-                    +977 9807302924
+                    {t.booking.summary.phone}
                   </span>
                 </div>
               </div>
